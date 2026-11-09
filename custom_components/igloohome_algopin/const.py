@@ -8,10 +8,11 @@ DOMAIN = "igloohome_algopin"
 BRAND = "igloohome"
 VERSION = "0.1.1"
 
-# Latest release on PyPI as of 6 November 2026 (uploaded 19 July 2026).
-# 0.1.2 requests the hourly and daily AlgoPIN scopes but does not implement
-# those endpoints. See api.py.
-IGLOOHOME_API_REQUIREMENT = "igloohome-api==0.1.2"
+# Home Assistant core pins igloohome-api==0.1.1 for the built-in igloohome
+# integration. A custom integration cannot pin ==0.1.2 in the same environment.
+# 0.1.2 only adds lastSync datetime parsing, which this integration does not
+# use. Auth.request and the AlgoPIN scopes are already on 0.1.1. See api.py.
+IGLOOHOME_API_REQUIREMENT = "igloohome-api>=0.1.1"
 
 CONF_CLIENT_ID = "client_id"
 CONF_CLIENT_SECRET = "client_secret"

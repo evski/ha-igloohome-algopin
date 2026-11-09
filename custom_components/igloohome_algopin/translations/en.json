@@ -11,14 +11,14 @@
       },
       "locks": {
         "title": "Choose locks",
-        "description": "These devices were returned by GET /home/devices/support-pins. The label shows the account device name, the device id, and its prefix. It does not name a product model. Battery, pairing time, the internal id, and home id from that response are not stored. If you are not sure which lock this is, open the igloohome app or API portal, read the device id (the Bluetooth name, for example IGB4example), and compare the prefix with https://docs.igloohome.co/home/supported-devices. Prefix IGB4 on that table is Deadbolt 2S Metal Grey and AlgoPIN yes. A retail name such as Smart Deadbolt 4 Metal Grey is not a row on that page.",
+        "description": "These devices were returned by GET /home/devices/support-pins. The label shows the account device name, the device id, and its prefix. It does not name a product model. Battery, pairing time, the internal id, and home id from that response are not stored. If you are not sure which lock this is, open the igloohome app or API portal, read the device id (the Bluetooth name, for example IGB4example), and compare the prefix with the supported-devices table: {docs_url}. Prefix IGB4 on that table is Deadbolt 2S Metal Grey and AlgoPIN yes. A retail name such as Smart Deadbolt 4 Metal Grey is not a row on that page.",
         "data": {
           "locks": "Locks"
         }
       },
       "website": {
         "title": "Website PIN link",
-        "description": "Optional. Leave both fields empty to skip. When set, each lock's Website PIN link sensor GETs this status URL with Authorization: Bearer and the token. The JSON body is {\"locks\": [{\"device_id\": \"<igloohome device id>\", \"pin_link\": \"https://...\"}]}.",
+        "description": "Optional. Leave both fields empty to skip. When set, each lock's Website PIN link sensor requests this status URL with a bearer token. The JSON body is an object with a locks list. Each lock has device_id and pin_link.",
         "data": {
           "website_status_url": "Website status URL",
           "website_bearer_token": "Website bearer token"
@@ -51,7 +51,7 @@
     "step": {
       "init": {
         "title": "Choose locks",
-        "description": "The list was loaded again from GET /home/devices/support-pins. Labels show the account device name, the device id, and the prefix, not a product model. Battery, pairing time, the internal id, and home id are not stored. Compare the device id in the igloohome account with https://docs.igloohome.co/home/supported-devices if the prefix is unfamiliar. Prefix IGB4 is Deadbolt 2S Metal Grey, AlgoPIN yes. Smart Deadbolt 4 Metal Grey is not a row on that page. Leave the website token blank to keep the saved token. Clear the URL and the token to stop reading the website.",
+        "description": "The list was loaded again from GET /home/devices/support-pins. Labels show the account device name, the device id, and the prefix, not a product model. Battery, pairing time, the internal id, and home id are not stored. Compare the device id in the igloohome account with the supported-devices table ({docs_url}) if the prefix is unfamiliar. Prefix IGB4 is Deadbolt 2S Metal Grey, AlgoPIN yes. Smart Deadbolt 4 Metal Grey is not a row on that page. Leave the website token blank to keep the saved token. Clear the URL and the token to stop reading the website.",
         "data": {
           "locks": "Locks",
           "website_status_url": "Website status URL",

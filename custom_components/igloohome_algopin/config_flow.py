@@ -35,6 +35,8 @@ from .models import device_label, is_offered
 
 _LOGGER = logging.getLogger(__name__)
 
+_DOCS_PLACEHOLDERS = {"docs_url": "https://docs.igloohome.co/home/supported-devices"}
+
 
 def _password() -> TextSelector:
     return TextSelector(TextSelectorConfig(type=TextSelectorType.PASSWORD))
@@ -142,6 +144,7 @@ class IglooConfigFlow(ConfigFlow, domain=DOMAIN):
         return self.async_show_form(
             step_id="locks",
             data_schema=_lock_schema(self._devices),
+            description_placeholders=_DOCS_PLACEHOLDERS,
             errors=errors,
         )
 
@@ -280,7 +283,12 @@ class IglooOptionsFlow(OptionsFlow):
         if not devices and not errors:
             return self.async_abort(reason="no_devices")
         if not devices:
-            return self.async_show_form(step_id="init", data_schema=vol.Schema({}), errors=errors)
+            return self.async_show_form(
+                step_id="init",
+                data_schema=vol.Schema({}),
+                description_placeholders=_DOCS_PLACEHOLDERS,
+                errors=errors,
+            )
 
         current = [
             item["device_id"]
@@ -295,5 +303,6 @@ class IglooOptionsFlow(OptionsFlow):
                 current or None,
                 website_url=saved_url if isinstance(saved_url, str) else "",
             ),
+            description_placeholders=_DOCS_PLACEHOLDERS,
             errors=errors,
         )

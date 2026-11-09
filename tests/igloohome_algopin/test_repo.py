@@ -13,7 +13,8 @@ def test_manifest_pins_the_verified_package_and_matches_the_version_constant():
     manifest = json.loads((COMPONENT / "manifest.json").read_text())
     assert manifest["domain"] == "igloohome_algopin"
     assert manifest["name"] == "Igloo AlgoPIN"
-    assert manifest["requirements"] == ["igloohome-api==0.1.2"]
+    assert manifest["requirements"] == ["igloohome-api>=0.1.1"]
+    assert manifest["categories"] == ["security_safety.locks_access"]
     assert manifest["version"] == "0.1.1"
     assert manifest["config_flow"] is True
     assert manifest["integration_type"] == "service"
@@ -22,7 +23,7 @@ def test_manifest_pins_the_verified_package_and_matches_the_version_constant():
     assert manifest["issue_tracker"] == "https://github.com/evski/ha-igloohome-algopin/issues"
     source = (COMPONENT / "const.py").read_text()
     assert 'VERSION = "0.1.1"' in source
-    assert "igloohome-api==0.1.2" in source
+    assert "igloohome-api>=0.1.1" in source
 
 
 def test_hacs_metadata_and_validation_workflow():
@@ -35,8 +36,9 @@ def test_hacs_metadata_and_validation_workflow():
     assert "hacs/action@main" in workflow
     assert "category: integration" in workflow
     assert "pytest" in workflow
-    assert "ignore:" not in workflow
-    assert "ignore " not in workflow
+    assert "ignore: description topics" in workflow
+    assert "ignore: brands" not in workflow
+    assert "ignore: hacsjson" not in workflow
     changelog = (ROOT / "CHANGELOG.md").read_text()
     assert "## 0.1.1" in changelog
     readme = (ROOT / "README.md").read_text()

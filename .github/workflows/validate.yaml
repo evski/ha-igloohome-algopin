@@ -19,6 +19,8 @@ jobs:
       - uses: hacs/action@main
         with:
           category: integration
+          # description and topics are GitHub repository settings, not files.
+          ignore: description topics
   tests:
     runs-on: ubuntu-latest
     steps:

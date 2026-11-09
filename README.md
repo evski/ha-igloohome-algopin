@@ -15,7 +15,7 @@ You need an [igloohome individual API](https://docs.igloohome.co/home/individual
 
 igloohome documents a 30-day trial and then USD $2 per active lock per month. HTTP 402 means billing rejected the call.
 
-Home Assistant installs the pinned dependency `igloohome-api==0.1.2` from the manifest when the integration is set up. You do not install that package yourself.
+Home Assistant installs `igloohome-api` from the manifest (`igloohome-api>=0.1.1`) when the integration is set up. You do not install that package yourself. The built-in igloohome integration pins `igloohome-api==0.1.1` in the same environment, so this integration does not pin `0.1.2`. Version 0.1.2 only adds `lastSync` datetime parsing, which these calls do not use.
 
 ## Install
 
@@ -115,7 +115,7 @@ Create the GitHub release after the Validate workflow on that commit has succeed
 
 1. Set `version` in `custom_components/igloohome_algopin/manifest.json` and `VERSION` in `const.py` to the new version, and add that version to `CHANGELOG.md`.
 2. Merge the change to `main`.
-3. Wait until the Validate workflow on that commit succeeds. The hassfest job, the HACS job, and the tests job all have to pass. `.github/workflows/validate.yaml` does not set `ignore`.
+3. Wait until the Validate workflow on that commit succeeds. The hassfest job, the HACS job, and the tests job all have to pass. HACS ignores only the `description` and `topics` checks, which are GitHub repository settings.
 4. Create a GitHub release of that commit. Name it `v` plus the manifest version (for example `v0.1.1`) and target `main`.
 
 ## License
