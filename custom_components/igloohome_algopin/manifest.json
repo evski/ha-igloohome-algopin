@@ -1,0 +1,12 @@
+{
+  "domain": "igloohome_algopin",
+  "name": "Igloo AlgoPIN",
+  "codeowners": ["@evski"],
+  "config_flow": true,
+  "documentation": "https://github.com/evski/ha-igloohome-algopin",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/evski/ha-igloohome-algopin/issues",
+  "requirements": ["igloohome-api==0.1.2"],
+  "version": "0.1.1"
+}
